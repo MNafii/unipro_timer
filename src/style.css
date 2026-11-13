@@ -1,0 +1,119 @@
+* { box-sizing: border-box; margin: 0; }
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  font-family: Inter, system-ui, sans-serif;
+  color: #fff;
+  background:
+    radial-gradient(circle at top left, #5bc0de 0%, transparent 40%),
+    #6366f1;
+}
+
+.wrapper { text-align: center; padding: 24px; }
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 64px;
+}
+
+.timer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+}
+
+.unit { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+
+.card {
+  position: relative;
+  width: clamp(80px, 16vw, 200px);
+  aspect-ratio: 1 / 1.05;
+  display: grid;
+  place-items: center;
+  font-size: clamp(2.5rem, 8vw, 7rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.85);
+  background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.25));
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+/* garis tengah ala flip clock */
+.card::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.label {
+  font-size: clamp(0.7rem, 1.6vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* titik dua */
+.sep {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: clamp(30px, 6vw, 80px);
+}
+.sep i {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* animasi saat angka berubah */
+.card.tick { animation: tick 0.3s ease; }
+@keyframes tick {
+  from { transform: translateY(-6px); opacity: 0.6; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 56px;
+}
+
+.btn {
+  min-width: 120px;
+  padding: 14px 28px;
+  font: inherit;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.15s, opacity 0.15s;
+}
+
+.btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn.primary {
+  color: #4f46e5;
+  background: #fff;
+}
+.btn.primary:hover:not(:disabled) { background: #eef; }
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
