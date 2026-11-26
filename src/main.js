@@ -1,7 +1,7 @@
 import './style.css';
 
 // Durasi awal: atur di sini
-const INITIAL = { hours: 4, minutes: 0, seconds: 0 };
+const INITIAL = { hours: 0, minutes: 5, seconds: 0 };
 
 const INITIAL_MS =
   ((INITIAL.hours * 60 + INITIAL.minutes) * 60 +
